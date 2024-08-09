@@ -22,10 +22,14 @@ app.get('/account', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    const { email, password } = req.body;
+    const { email, password } = req.body; // Extract email and password from the request
+    // Check if the provided email and password match any in the validUsers array
     const isValid = validUsers.some(user => user.email === email && user.password === password);
+    
+    // Return a JSON object indicating if the login was successful or not
     res.json({ valid: isValid });
 });
+
 
 const PORT = 3000;
 http.listen(PORT, () => {
